@@ -1,0 +1,36 @@
+class Solution {
+public:
+    string countAndSay(int n) {
+        if(n==1)return "1";
+        vector<char> str={'1'};
+       
+        int i=2;
+       
+        while(i<=n){
+            vector<char> temp;
+            int l=0,r=0,c=0;
+            char item;
+            while(r<str.size()){
+                 item=str[l];
+                if(str[l]==str[r]){
+                    c++;
+                }else{
+                    temp.push_back(c+'0');
+                    temp.push_back(item);
+                    l=r;
+                    c=1;
+                    item=str[r];
+                }
+                r++;
+
+            }
+            temp.push_back(c+'0');
+            temp.push_back(item);
+            str=temp;
+            i++;
+        }
+        string res(str.begin(),str.end());
+        return res;
+        
+    }
+};
